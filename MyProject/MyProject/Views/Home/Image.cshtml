@@ -1,0 +1,119 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<style>
+
+
+
+    .img-container {
+        position: relative;
+    }
+
+
+
+    #img {
+        position: relative;
+        height: 500px;
+        width: 100%;
+    }
+
+
+
+    #prev {
+        position: absolute;
+        top: 50%;
+        left: 2%;
+    }
+
+
+
+    #next {
+        position: absolute;
+        top: 50%;
+        left: 93%;
+    }
+
+    #prev:hover {
+        background-color: black;
+        color: white;
+    }
+
+    #next:hover {
+        background-color: black;
+        color: white;
+    }
+</style>
+
+
+
+<h1>Index</h1>
+
+
+
+<div class="container ">
+
+
+
+    <div class="img-container text-center img-flui">
+
+
+
+        <img id="img" class="img-fluid" src="~/image/1.jpg" />
+        <a id="prev" class="btn"><b style="font-size:40px">&lt;</b></a>
+        <a id="next" class="btn"><b style="font-size:40px">&gt;</b></a>
+        <label></label>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+
+    var i = 0;
+    var j = 0;
+    var image_array = ["1.jpg", "5.jpg"];
+
+
+
+
+
+    $("#next").click(function () {
+        i++;
+        i = i % image_array.length;
+
+
+
+        $("#img").attr("src", "~/image/" + image_array[i]);
+    });
+    $("#prev").click(function () {
+
+
+
+        i--;
+        if (i < 0) {
+            i = image_array.length - 1;
+        }
+        $("#img").attr("src", "~/image/" + image_array[i]);
+
+
+
+    });
+
+
+
+
+
+
+</script>
+

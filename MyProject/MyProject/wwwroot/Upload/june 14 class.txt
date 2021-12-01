@@ -1,0 +1,72 @@
+--After database connection in StudentDAL
+
+today june 14 class
+
+1=> in main form view(student view)
+-form:(take data from database and store it in view student detail in mainform )
+      view student detail 
+-goto toolbar data== datagridview and drag it in view student detail
+	steps:-
+	it forms a box
+	rightside arrow in box
+	add project datasource(available in text field dropdown list)
+	wizard will open
+	click database and click next
+	dataset will show in wizard(dataset == multiple rowdata in database) click next
+	connection aucha if empty cha bhane click new connection and put server name(typr . = for window authentication) select college in connect to database list and test connection
+	click next
+	collegeconnectionstring will show in box
+	click next
+	-chhose your database object(it is wizard):
+	select table student in tables
+	click finish
+	after this datagridview ma bind huncha(database ko table aucha)
+
+run mainform
+and data will show in build output
+
+2=> data manually from code(backend from code)
+put connectionstring in studentdal before class from below 
+--in studentdal class (create new class)
+public DataTable GetStudents(){
+sqlconnection connection=new sqlco...;
+con....open;
+
+sqlcommand cmd =new sqlcommand("select studentid,studentname,gender,address,mobileno,faculty from student")
+sqldataadapter da=new sql....(cmd);//  databse bata ayeko data hold garcha sqldataadapter le
+
+DataSet ds=new dataset;//
+da.Fill(ds);
+
+DataTable dt=ds.Tables[0];// bz we have selected single table
+return dt;
+
+}
+--put dal in studentservice class(see code from sir le pathako zip)
+
+--in studentviewusercontrolclass
+public view studentviewusercontrolclass_load()
+{
+	//studentservice service=new stu....;
+	//var dt=service.GetAllStudents();// it is done in student service
+	//dataGridView1.DataSource=dt;
+	SearchStudent();
+}
+run mainform and studentview in output
+
+3=>
+at top put label(Search) and textbox(txtSearch in(Name))
+and datagridviewbelow
+--in studentviewusercontrolclass
+private void SearchStudent()// creating common method
+{
+	studentservice service=new stu....;
+	var dt=service.GetAllStudents(txtSearch.Text);// it is done in student service
+	dataGridView1.DataSource=dt;
+}// further code in done in studentDal
+
+private void txtSearch_TextChanged(object...,event...)
+{
+SearchStudent();
+}
+
